@@ -37,6 +37,7 @@
     "log4js": "^0.6.21",
     "mime": "^1.2.11",
     "minimatch": "^2.0.1",
+    "protractor": "1.5.0",
     "socket.io": "^1.2.1",
     "time-grunt": "^0.3.1",
     "useragent": "^2.1.3"
