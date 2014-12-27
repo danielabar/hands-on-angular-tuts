@@ -16,6 +16,17 @@ exports.config = {
   // Options to be passed to Jasmine-node.
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 30000
-  }
+    defaultTimeoutInterval: 30000,
+    silent: true
+  },
+
+  onPrepare: function() {
+    var SpecReporter = require('jasmine-spec-reporter');
+    jasmine.getEnv().addReporter(new SpecReporter(
+      {
+        displayStacktrace: true,
+        displaySpecDuration: true
+      }
+    ));
+   }
 };

@@ -28,6 +28,7 @@
     "grunt-svgmin": "^0.4.0",
     "grunt-usemin": "^2.1.1",
     "grunt-wiredep": "^1.7.0",
+    "jasmine-spec-reporter": "1.1.0",
     "jshint-stylish": "^0.2.0",
     "karma": "0.12.28",
     "karma-chrome-launcher": "0.1.7",
