@@ -74,3 +74,8 @@ Run tests
   ```bash
   rspec spec/features/navigation_spec.rb
   ```
+
+## Neat Tricks
+
+`ng-repeat-start` and `ng-repeat-end` can be used to prolong the scope of `ng-repeat` iterator in a template.
+[Example](sw_front/app/views/edges.html)
