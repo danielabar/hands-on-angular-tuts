@@ -1,14 +1,15 @@
+'use strict';
+
 describe('Navigation Menu', function () {
 
   beforeEach(function () {
-    // browser.get('http://localhost:9000');
     browser.get('/');
   });
 
   var verifyActiveLink = function(expectedLinkText) {
     var activeEl = element(by.css('.active'));
     expect(activeEl.getText()).toEqual(expectedLinkText);
-  }
+  };
 
   it('Home link is active by default', function () {
     verifyActiveLink('Home');
@@ -30,5 +31,5 @@ describe('Navigation Menu', function () {
 
     homeNavItem.click();
     verifyActiveLink('Home');
-  })
+  });
 });

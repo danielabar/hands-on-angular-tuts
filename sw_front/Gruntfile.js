@@ -44,6 +44,11 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js', 'test/spec/{,*/}*.js'],
         tasks: ['newer:jshint:test', 'karma']
       },
+      // For now, just run jshint, maybe later auto run protractor/selenium?
+      e2eTest: {
+        files: ['test/e2e/{,*/}*.js'],
+        tasks: ['newer:jshint:test']
+      },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
@@ -153,14 +158,16 @@ module.exports = function (grunt) {
       all: {
         src: [
           'Gruntfile.js',
-          '<%= yeoman.app %>/scripts/{,*/}*.js'
+          '<%= yeoman.app %>/scripts/{,*/}*.js',
+          'test/e2e/**/*.js',
+          'test/spec**/*.js'
         ]
       },
       test: {
         options: {
           jshintrc: 'test/.jshintrc'
         },
-        src: ['test/spec/{,*/}*.js']
+        src: ['test/spec/{,*/}*.js', 'test/e2e/{,*/}*.js']
       }
     },
 
