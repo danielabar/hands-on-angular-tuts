@@ -1,7 +1,8 @@
 describe('Navigation Menu', function () {
 
   beforeEach(function () {
-    browser.get('http://localhost:9000');
+    // browser.get('http://localhost:9000');
+    browser.get('/');
   });
 
   var verifyActiveLink = function(expectedLinkText) {

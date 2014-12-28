@@ -32,7 +32,7 @@ Start web driver
 Open another tab and run tests
 
   ```bash
-  /node_modules/protractor/bin/protractor test/e2e.conf.js
+  ./node_modules/protractor/bin/protractor test/e2e.conf.js
   ```
 
 ## Testing with Rails

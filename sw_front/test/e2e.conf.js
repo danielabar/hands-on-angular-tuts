@@ -4,6 +4,8 @@ exports.config = {
 
   seleniumAddress: 'http://localhost:4444/wd/hub',
 
+  baseUrl: 'http://localhost:9000',
+
   // Capabilities to be passed to the webdriver instance.
   capabilities: {
     'browserName': 'chrome'
