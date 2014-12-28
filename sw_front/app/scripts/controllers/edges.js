@@ -1,34 +1,11 @@
 'use strict';
 
 angular.module('swFrontApp')
-  .controller('EdgesCtrl', function ($scope) {
+  .controller('EdgesCtrl', function ($scope, edges) {
 
     var selectedEdge = null;
 
-    $scope.edges = [
-      {
-        name: 'Attractive',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus nisi aut vero molestiae ipsum cumque ratione et laborum amet! Molestias!',
-        category: {
-          name: 'Background'
-        },
-        requirements: [
-          {name: null, value: 'Novice'},
-          {name: 'Vigor', value: 'd6'}
-        ]
-      },
-      {
-        name: 'Strong',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum, iure aspernatur quibusdam nobis. Labore, ipsam.',
-        category: {
-          name: 'Background'
-        },
-        requirements: [
-          {name: null, value: 'Novice'},
-          {name: 'Vigor', value: 'd8'}
-        ]
-      }
-    ];
+    $scope.edges = edges.query();
 
     $scope.selectEdge = function(edge) {
       selectedEdge = (selectedEdge === edge) ? null : edge;
