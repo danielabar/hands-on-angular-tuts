@@ -23,9 +23,18 @@ describe('Edges Page', function() {
     expect(descriptions.count()).toEqual(2);
     expect(descriptions.get(0).isDisplayed()).toBeFalsy();
     expect(descriptions.get(1).isDisplayed()).toBeFalsy();
-    // descriptions.each(function(desc) {
-    //   expect(desc.isDisplayed()).toBeFalsy();
-    // });
+  });
+
+  it('Clicking on an edge toggles its description display', function() {
+    var descriptions = element.all(by.binding('edge.description'));
+    var firstEdge = element.all(by.css('li.e2e-edge')).get(0);
+    firstEdge.click();
+
+    expect(descriptions.get(0).isDisplayed()).toBeTruthy();
+    expect(descriptions.get(0).getText()).toContain('Lorem ipsum');
+
+    firstEdge.click();
+    expect(descriptions.get(0).isDisplayed()).toBeFalsy();
   });
 
 });

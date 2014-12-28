@@ -1,12 +1,12 @@
 <h1>Edges</h1>
 
 <ul>
-  <li ng-repeat-start="edge in edges" ng-click="selectEdge(edge)">
+  <li class="e2e-edge" ng-repeat-start="edge in edges" ng-click="selectEdge(edge)">
     <span class="label label-default">{{edge.category.name}}</span>
     {{edge.name}}
     <span class="text-muted">
       ({{ displayRequirements(edge.requirements) }})
     </span>
   </li>
-  <li class="e2e-edge-description" ng-repeat-end ng-show="isSelected(edge)">{{edge.description}}</li>
+  <li ng-repeat-end ng-show="isSelected(edge)">{{edge.description}}</li>
 </ul>
