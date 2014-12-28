@@ -75,7 +75,21 @@ Run tests
   rspec spec/features/navigation_spec.rb
   ```
 
-## Neat Tricks
+## Repeater
 
 `ng-repeat-start` and `ng-repeat-end` can be used to prolong the scope of `ng-repeat` iterator in a template.
 [Example](sw_front/app/views/edges.html)
+
+## Filter
+
+By default, piping the output of a repeater through `filter` searches through ALL attributes
+
+  ```html
+  <li ng-repeat-start="edge in edges | filter:filterBy.search"">
+    ```
+
+To only search a single attribute, for example `name`
+
+  ```html
+  <li ng-repeat-start="edge in edges | filter: {name: filterBy.search}">
+  ```

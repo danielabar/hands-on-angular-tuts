@@ -1,11 +1,17 @@
 'use strict';
 
 angular.module('swFrontApp')
-  .controller('EdgesCtrl', function ($scope, edges) {
+  .controller('EdgesCtrl', function ($scope, edges, categories) {
 
     var selectedEdge = null;
 
     $scope.edges = edges.query();
+    $scope.categories = categories.query();
+
+    $scope.filterBy = {
+      search: '',
+      category: 'All'
+    };
 
     $scope.selectEdge = function(edge) {
       selectedEdge = (selectedEdge === edge) ? null : edge;

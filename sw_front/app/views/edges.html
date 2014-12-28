@@ -1,7 +1,27 @@
 <h1>Edges</h1>
 
+<!-- Filter -->
+<div class="row">
+
+  <!-- By Name -->
+  <div class="form-group col-xs-3">
+    <label for="searchByName">Search</label>
+    <input type="search" id="searchByName" name="searchByName" class="form-control" placeholder="Search by name" ng-model="filterBy.search" />
+  </div>
+
+  <!-- By Category -->
+  <div class="form-group col-xs-3">
+    <label for="searchByCategory">Category</label>
+    <select name="searchByCategory" id="searchByCategory" class="form-control"
+      ng-model="filterBy.category"
+      ng-options="c.name for c in categories">
+    </select>
+  </div>
+</div><!-- //Filter -->
+
+<!-- Data -->
 <ul>
-  <li class="e2e-edge" ng-repeat-start="edge in edges" ng-click="selectEdge(edge)">
+  <li class="e2e-edge" ng-repeat-start="edge in edges | filter: {name: filterBy.search}" ng-click="selectEdge(edge)">
     <span class="label label-default">{{edge.category.name}}</span>
     {{edge.name}}
     <span class="text-muted">
@@ -9,4 +29,4 @@
     </span>
   </li>
   <li ng-repeat-end ng-show="isSelected(edge)">{{edge.description}}</li>
-</ul>
+</ul><!-- //Data -->
