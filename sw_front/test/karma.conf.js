@@ -52,12 +52,16 @@ module.exports = function(config) {
       'karma-phantomjs-launcher',
       'karma-chrome-launcher',
       'karma-safari-launcher',
-      'karma-jasmine'
+      'karma-jasmine',
+      'karma-html-reporter'
     ],
 
-    reporters: [
-      'dots'
-    ],
+    reporters: ['progress', 'html'],
+
+    htmlReporter: {
+      outputDir: 'test/karma_html',
+      templatePath: __dirname+'/../node_modules/karma-html-reporter/jasmine_template.html'
+    },
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
