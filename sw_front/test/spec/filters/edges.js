@@ -37,18 +37,31 @@ describe('Filter: edges', function () {
     };
   };
 
+  var verifyEdgeData = function(item, categoryName, requirement0Value, requirement1Value) {
+    expect(item.category.name).toEqual(categoryName);
+    expect(item.requirements[0].value).toEqual(requirement0Value);
+    expect(item.requirements[1].value).toEqual(requirement1Value);
+  };
+
   describe('Category', function() {
 
     it('Filters by category name', function() {
-      expect(edges(data, filterBy).length).toEqual(1);
-      expect(edges(data, filterBy)[0].category.name).toEqual('first');
+      filterBy.category.name = 'first';
+      filterBy.rank.name = 'All';
+
+      var result = edges(data, filterBy);
+      expect(result.length).toEqual(1);
+      verifyEdgeData(result[0], 'first', 'Novice', 'd6');
     });
 
     it('Returns all elements when category filter is All', function() {
       filterBy.category.name = 'All';
-      expect(edges(data, filterBy).length).toEqual(2);
-      expect(edges(data, filterBy)[0].category.name).toEqual('first');
-      expect(edges(data, filterBy)[1].category.name).toEqual('second');
+      filterBy.rank.name = 'All';
+
+      var result = edges(data, filterBy);
+      expect(result.length).toEqual(2);
+      verifyEdgeData(result[0], 'first', 'Novice', 'd6');
+      verifyEdgeData(result[1], 'second', 'Seasoned', 'd6');
     });
 
   });
@@ -56,8 +69,43 @@ describe('Filter: edges', function () {
   describe('Rank', function() {
 
     it('Filters by rank name', function() {
-      expect(edges(data, filterBy).length).toEqual(1);
+      filterBy.category.name = 'All';
+      filterBy.rank.name = 'Novice';
 
+      var result = edges(data, filterBy);
+      expect(result.length).toEqual(1);
+      verifyEdgeData(result[0], 'first', 'Novice', 'd6');
+    });
+
+    it('Returns all elements when rank filter is All', function() {
+      filterBy.category.name = 'All';
+      filterBy.rank.name = 'All';
+
+      var result = edges(data, filterBy);
+      expect(result.length).toEqual(2);
+      verifyEdgeData(result[0], 'first', 'Novice', 'd6');
+      verifyEdgeData(result[1], 'second', 'Seasoned', 'd6');
+    });
+
+  });
+
+  describe('Combined', function() {
+
+    it('Filters by category and rank', function() {
+      filterBy.category.name = 'second';
+      filterBy.rank.name = 'Seasoned';
+
+      var result = edges(data, filterBy);
+      expect(result.length).toEqual(1);
+      verifyEdgeData(result[0], 'second', 'Seasoned', 'd6');
+    });
+
+    it('Returns an empty list when no data matches filter criteria', function() {
+      filterBy.category.name = 'second';
+      filterBy.rank.name = 'Novice';
+
+      var result = edges(data, filterBy);
+      expect(result.length).toEqual(0);
     });
 
   });

@@ -8,13 +8,20 @@
 */
 angular.module('swFrontApp')
   .filter('edges', function () {
-    return function (data, filterBy) {
-      if (filterBy.category.name === 'All') {
-        return data;
-      } else {
-        return data.filter(function(item) {
-          return item.category.name === filterBy.category.name;
-        });
+
+    var getRank = function(requirements) {
+      for (var i=0; i<requirements.length; i++) {
+        if (requirements[i].type === 'rank') {
+          return requirements[i].value;
+        }
       }
+    };
+
+    return function (data, filterBy) {
+      return data.filter(function(item) {
+        var category = (filterBy.category.name === 'All' || item.category.name === filterBy.category.name);
+        var rank = (filterBy.rank.name === 'All' || getRank(item.requirements) === filterBy.rank.name);
+        return category && rank;
+      });
     };
   });
