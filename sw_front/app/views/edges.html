@@ -17,11 +17,22 @@
       ng-options="c.name for c in categories">
     </select>
   </div>
+
+  <!-- By Rank -->
+  <div class="form-group col-xs-3">
+    <label for="searchByrank">Rank</label>
+    <select name="searchByrank" id="searchByrank" class="form-control"
+    ng-model="filterBy.rank"
+    ng-options="r.name for r in ranks">
+  </select>
+</div>
+
 </div><!-- //Filter -->
 
 <!-- Data -->
 <ul>
-  <li class="e2e-edge" ng-repeat-start="edge in edges | filter: {name: filterBy.search}" ng-click="selectEdge(edge)">
+  <!-- 'edges' is a custom filter that receives the current filterBy object as input -->
+  <li class="e2e-edge" ng-repeat-start="edge in edges | filter: {name: filterBy.search} | edges:filterBy" ng-click="selectEdge(edge)">
     <span class="label label-default">{{edge.category.name}}</span>
     {{edge.name}}
     <span class="text-muted">

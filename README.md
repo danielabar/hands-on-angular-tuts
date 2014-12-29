@@ -93,3 +93,14 @@ To only search a single attribute, for example `name`
   ```html
   <li ng-repeat-start="edge in edges | filter: {name: filterBy.search}">
   ```
+
+## Select
+
+To have angular populate a select box with options. For example, given that `categories` is in scope:
+
+  ```html
+  <select name="searchByCategory" id="searchByCategory" class="form-control"
+    ng-model="filterBy.category"
+    ng-options="c.name for c in categories">
+  </select>
+  ```
