@@ -94,6 +94,8 @@ To only search a single attribute, for example `name`
   <li ng-repeat-start="edge in edges | filter: {name: filterBy.search}">
   ```
 
+Custom filter [example](sw_front/app/scripts/filters/edges.js) and [unit test](sw_front/test/spec/filters/edges.js).
+
 ## Select
 
 To have angular populate a select box with options. For example, given that `categories` is in scope:
@@ -104,3 +106,19 @@ To have angular populate a select box with options. For example, given that `cat
     ng-options="c.name for c in categories">
   </select>
   ```
+
+## HTTP
+
+Use Angular's http mock to unit test components that make a ajax requests.
+To use it, inject `$httpBackend` into controller unit tests. [Example](sw_front/test/controllers/edges.js)
+
+When working with mock http, its a good idea to make sure there are no leftover pending requests.
+Use `afterEach` to verify `verifyNoOutstandingExpectation` and `verifyNoOutstandingRequest`.
+
+To simulate an http request in a test
+
+  ```javascript
+  http.expectGET('/api/edges');
+  http.flush();
+  ```
+

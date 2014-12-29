@@ -6,15 +6,33 @@ describe('Controller: EdgesCtrl', function () {
   beforeEach(module('swFrontApp'));
 
   var EdgesCtrl,
-    scope;
+    scope,
+    http;
+
+  var configureMockHttp = function(http) {
+    var edgeResponse = [{key: 'hello'}];
+    http.whenGET('/api/edges').respond(edgeResponse);
+  };
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
+  beforeEach(inject(function ($controller, $rootScope, $httpBackend) {
     scope = $rootScope.$new();
+    http = $httpBackend;
+    configureMockHttp(http);
     EdgesCtrl = $controller('EdgesCtrl', {
       $scope: scope
     });
   }));
+
+  afterEach(function () {
+    http.verifyNoOutstandingExpectation();
+    http.verifyNoOutstandingRequest();
+  });
+
+  it('Controller instantiation makes request to api to fetch edges', function() {
+    http.expectGET('/api/edges');
+    http.flush();
+  });
 
   describe('displayRequirements', function() {
 
