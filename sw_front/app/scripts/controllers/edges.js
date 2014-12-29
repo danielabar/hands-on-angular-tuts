@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('swFrontApp')
-  .controller('EdgesCtrl', function ($scope, edges, categories, ranks) {
+  .controller('EdgesCtrl', function ($scope, EdgeResource, categories, ranks) {
 
     var selectedEdge = null;
 
-    $scope.edges = edges.query();
+    $scope.edges = EdgeResource.query();
     $scope.categories = categories.query();
     $scope.ranks = ranks.query();
 

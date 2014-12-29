@@ -34,21 +34,29 @@ describe('Controller: EdgesCtrl', function () {
     http.flush();
   });
 
+  it('Assigns http response data to edges', function() {
+    http.flush();
+    expect(scope.edges[0].key).toEqual('hello');
+  });
+
   describe('displayRequirements', function() {
 
     var reqs;
 
     it('Concatenates name and value of the requirement', function() {
+      http.flush();
       reqs = [{name: 'Agility', value: 'd6'}];
       expect(scope.displayRequirements(reqs)).toEqual('Agility d6');
     });
 
     it('Ignores name if it is null', function() {
+      http.flush();
       reqs = [{name: null, value: 'Novice'}];
       expect(scope.displayRequirements(reqs)).toEqual('Novice');
     });
 
     it('Multiple requirements are comma delimited', function() {
+      http.flush();
       reqs = [
         {name: null, value: 'Novice'},
         {name: 'Agility', value: 'd6'}
@@ -72,12 +80,14 @@ describe('Controller: EdgesCtrl', function () {
     describe('selectEdge', function() {
 
       it('Sets selected edge to null when already selected', function() {
+        http.flush();
         scope.unitTestSetSelectedEdge(edges[0]);
         scope.selectEdge(edges[0]);
         expect(scope.unitTestGetSelectedEdge()).toBe(null);
       });
 
       it('Sets selected edge to selection when not already selected', function() {
+        http.flush();
         scope.unitTestSetSelectedEdge(edges[0]);
         scope.selectEdge(edges[1]);
         expect(scope.unitTestGetSelectedEdge()).toBe(edges[1]);
@@ -88,11 +98,13 @@ describe('Controller: EdgesCtrl', function () {
     describe('isSelected', function() {
 
       it('Returns true when input edge is the same as selected edge', function() {
+        http.flush();
         scope.unitTestSetSelectedEdge(edges[0]);
         expect(scope.isSelected(edges[0])).toBe(true);
       });
 
       it('Returns false when input edge is different from selected edge', function() {
+        http.flush();
         scope.unitTestSetSelectedEdge(edges[0]);
         expect(scope.isSelected(edges[1])).toBe(false);
       });

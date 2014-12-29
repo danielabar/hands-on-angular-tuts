@@ -55,6 +55,10 @@ module.exports = function(config) {
       'karma-jasmine'
     ],
 
+    reporters: [
+      'dots'
+    ],
+
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
     singleRun: false,

@@ -1,5 +1,6 @@
 'use strict';
 
+// Unused, replaced by EdgeResource factory using $resource
 // AngularJS will instantiate a singleton by calling "new" on this function
 angular.module('swFrontApp')
   .service('edges', function () {
