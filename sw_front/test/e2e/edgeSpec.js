@@ -1,11 +1,13 @@
 'use strict';
 
 describe('Edges Page', function() {
+  var edgePage = require('./edge_page.js');
 
   var EXPECTED_NUM_EDGES = 7;
 
   beforeEach(function () {
-    browser.get('/#/edges');
+    // browser.get('/#/edges');
+    edgePage.navigate();
   });
 
   it('Displays a list of edges', function() {
