@@ -188,3 +188,32 @@ To not get stuck, use express back end
   cd sw-express
   DEBUG=myapp ./bin/www
   ```
+
+## Angular Forms
+
+To activate Angular form validations, form must have a name AND must disable HTML5 form validation.
+The form name will appear as a property on $scope, which is then available in the controller.
+
+  ```html
+  <form class="form" name="loginForm" novalidate>
+    ...
+  </form>
+  ```
+
+To have Angular control the form submission, use `ng-submit` directive
+
+  ```html
+  <form class="form" name="loginForm" novalidate ng-submit="login()">
+    ...
+  </form>
+  ```
+
+To check if form is valid in a controller
+
+  ```javascript
+  $scope.login = function() {
+    if ($scope.loginForm.$valid) {
+      // do something with form data...
+    }
+  }
+  ```
