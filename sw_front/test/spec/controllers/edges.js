@@ -11,7 +11,11 @@ describe('Controller: EdgesCtrl', function () {
 
   var configureMockHttp = function(http) {
     var edgeResponse = [{key: 'hello'}];
+    var categoryResponse = [{name: 'cat1'}];
+    var rankResponse = [{name: 'rank1'}];
     http.whenGET('/api/edges').respond(edgeResponse);
+    http.whenGET('/api/categories').respond(categoryResponse);
+    http.whenGET('/api/ranks').respond(rankResponse);
   };
 
   // Initialize the controller and a mock scope
@@ -31,12 +35,16 @@ describe('Controller: EdgesCtrl', function () {
 
   it('Controller instantiation makes request to api to fetch edges', function() {
     http.expectGET('/api/edges');
+    http.expectGET('/api/categories');
+    http.expectGET('/api/ranks');
     http.flush();
   });
 
   it('Assigns http response data to edges', function() {
     http.flush();
     expect(scope.edges[0].key).toEqual('hello');
+    expect(scope.categories[0].name).toEqual('cat1');
+    expect(scope.ranks[0].name).toEqual('rank1');
   });
 
   describe('displayRequirements', function() {

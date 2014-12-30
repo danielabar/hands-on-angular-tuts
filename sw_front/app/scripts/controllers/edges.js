@@ -1,19 +1,40 @@
 'use strict';
 
 angular.module('swFrontApp')
-  .controller('EdgesCtrl', function ($scope, EdgeResource, categories, ranks) {
+  .controller('EdgesCtrl', function ($scope, $q, EdgeResource, CategoryResource, RankResource) {
 
     var selectedEdge = null;
 
     $scope.edges = EdgeResource.query();
-    $scope.categories = categories.query();
-    $scope.ranks = ranks.query();
 
-    $scope.filterBy = {
-      search: '',
-      category: $scope.categories[0],
-      rank: $scope.ranks[0]
+    var categoryPromise = function() {
+      var deferred = $q.defer();
+      var result = CategoryResource.query(function() {
+        deferred.resolve(result);
+      });
+      return deferred.promise;
     };
+
+    var rankPromise = function() {
+      var deferred = $q.defer();
+      var result = RankResource.query(function() {
+        deferred.resolve(result);
+      });
+      return deferred.promise;
+    };
+
+    $q.all([
+     categoryPromise(),
+     rankPromise()
+     ]).then(function(data) {
+       $scope.categories = data[0];
+       $scope.ranks = data[1];
+       $scope.filterBy = {
+        search: '',
+        category: $scope.categories[0],
+        rank: $scope.ranks[0]
+      };
+    });
 
     $scope.selectEdge = function(edge) {
       selectedEdge = (selectedEdge === edge) ? null : edge;
