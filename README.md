@@ -122,3 +122,33 @@ To simulate an http request in a test
   http.flush();
   ```
 
+## Rails Controller
+
+So that angular front end app can make /api calls to get edges.
+
+First add api namespace to [routes](sw-backend/config/routes.rb)
+
+Add a [controller](sw-backend/app/controllers/api/edges_controller.rb) and [controller test](sw-backend-spec/controllers/edges_controller_spec.rb)
+
+## Rails Models
+
+Generate the models
+
+  ```bash
+  rails g model edge name description:text category:references
+  rails g model requirement name value mode
+  rails g model category name
+  ```
+
+Setup app and test databases
+
+  ```bash
+  rake db:migrate
+  rake db:test:prepare
+  ```
+
+Use Active Model Serializer to generate JSON representation of models.
+Add it to [gemfile](sw-backend/Gemfile), then run `bundle`
+
+
+

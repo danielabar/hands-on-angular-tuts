@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Nvigation Menu", js: true do
+describe "Navigation Menu", js: true do
 
   it "Changes active menu element depending on route" do
     visit '/'
