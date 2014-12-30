@@ -4,6 +4,7 @@ class CreateRequirements < ActiveRecord::Migration
       t.string :name
       t.string :value
       t.string :mode
+      t.references :edge
 
       t.timestamps null: false
     end

@@ -150,5 +150,41 @@ Setup app and test databases
 Use Active Model Serializer to generate JSON representation of models.
 Add it to [gemfile](sw-backend/Gemfile), then run `bundle`
 
+Generate
 
+  ```bash
+  rails g serializer edge
+  rails g serializer requirement
+  rails g serializer category
+  ```
+Edit the generated `{model}_serializer.rb` files to specify attributes.
 
+If any changes are  made to `{timestamp}_create_{model}.rb` files to modify the database schema, run
+
+  ```bash
+  rake db:drop
+  rake db:migrate
+  rake db:test:prepare
+  ```
+By default, rails active model serializer will generate root element. But angular app expects a list of results without a root element.
+To fix this, specify `root: false` in rails controller
+
+  ```ruby
+  module Api
+    class EdgesController < ApplicationController
+      def index
+        render json: Edge.all, root: false
+      end
+    end
+  end
+  ```
+
+## Express backend
+
+Having trouble with rails active model serializer not following edge relationships and generating expected json.
+To not get stuck, use express back end
+
+  ```bash
+  cd sw-express
+  DEBUG=myapp ./bin/www
+  ```

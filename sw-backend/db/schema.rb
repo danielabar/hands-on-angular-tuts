@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20141229223903) do
     t.string   "name"
     t.string   "value"
     t.string   "mode"
+    t.integer  "edge_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
