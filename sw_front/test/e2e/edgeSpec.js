@@ -50,4 +50,32 @@ describe('Edges Page', function() {
     expect(descriptions.get(0).isDisplayed()).toBeFalsy();
   });
 
+  it('Displays category options', function() {
+    var categoryOptions = element.all(by.options('c.name for c in categories'));
+    expect(categoryOptions.count()).toEqual(4);
+    expect(categoryOptions.get(0).getText()).toBe('All');
+    expect(categoryOptions.get(1).getText()).toBe('Background');
+    expect(categoryOptions.get(2).getText()).toBe('Combat');
+    expect(categoryOptions.get(3).getText()).toBe('Leadership');
+  });
+
+  it('Displays rank options', function() {
+    var rankOptions = element.all(by.options('r.name for r in ranks'));
+    expect(rankOptions.count()).toEqual(3);
+    expect(rankOptions.get(0).getText()).toBe('All');
+    expect(rankOptions.get(1).getText()).toBe('Novice');
+    expect(rankOptions.get(2).getText()).toBe('Seasoned');
+  });
+
+  it('Selecting a category option filters the results by that category', function() {
+    element(by.cssContainingText('option', 'Background')).click();
+
+    var names = element.all(by.binding('edge.name'));
+    expect(names.count()).toEqual(3);
+    expect(names.get(0).getText()).toEqual('Background Attractive (Novice, Vigor d6)');
+    expect(names.get(1).getText()).toEqual('Background Very Attractive (Novice, Attractive)');
+    expect(names.get(2).getText()).toEqual('Background Brave (Novice, Spirit d6)');
+
+  });
+
 });
