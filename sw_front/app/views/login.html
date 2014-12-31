@@ -9,8 +9,8 @@
     "
   >
     <label for="userEmail" class="control-label">Email</label>
-    <input id="userEmail" type="email" name="email" class="form-control" ng-model="user.email" required/>
-    <p class="help-block" ng-show="loginForm.email.$invalid && loginForm.email.$dirty && loginForm.submitted">
+    <input id="userEmail" type="email" name="email" class="form-control" ng-model="user.email" required cu-focus/>
+    <p class="help-block" ng-show="loginForm.email.$invalid && loginForm.email.$dirty && !loginForm.email.$focused">
       Please enter a valid email address in the format of me@example.com
     </p>
   </div>
@@ -24,8 +24,8 @@
     "
   >
     <label for="userPassword" class="control-label">Password</label>
-    <input id="userPassword" type="password" name="password" class="form-control" ng-model="user.password" required />
-    <p class="help-block" ng-show="loginForm.password.$invalid && loginForm.password.$dirty">
+    <input id="userPassword" type="password" name="password" class="form-control" ng-model="user.password" required cu-focus />
+    <p class="help-block" ng-show="loginForm.password.$invalid && loginForm.password.$dirty" && !loginForm.password.$focused">
       Password is required
     </p>
   </div>

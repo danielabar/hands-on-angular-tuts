@@ -5,10 +5,8 @@ angular.module('swFrontApp')
 
     $scope.login = function() {
       if ($scope.loginForm.$valid) {
-        console.log('sending request to server');
         return true;
       } else {
-        console.log('form is invalid');
         $scope.loginForm.submitted = true;
         return false;
       }

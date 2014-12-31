@@ -191,6 +191,8 @@ To not get stuck, use express back end
 
 ## Angular Forms
 
+Example [view](sw_front/app/views/login.html) and [controller](sw_front/app/scripts/controllers/login.js)
+
 To activate Angular form validations, form must have a name AND must disable HTML5 form validation.
 The form name will appear as a property on $scope, which is then available in the controller.
 
@@ -220,4 +222,34 @@ To check if form is valid in a controller
 
 Optionally, can choose to display error messages to user only when form is submitted.
 
-Preferred approach is to display error messages on blur, i.e. when field loses focus. This requires a custom directive.
+## Angular Directive
+
+Preferred approach is to display error messages on blur, i.e. when field loses focus.
+This requires a [custom directive](sw_front/app/scripts/directives/cu-focus.js).
+
+To use angular models in a directive, use `require: 'ngModel'.
+This makes the model controller available as fourth argument in the `link` function.
+See Angular [Directive doc](https://docs.angularjs.org/guide/directive) for more details, specificlly, "Creating Directives that Communicate".
+
+`link` function in directive allows us to listen to events such as `blur`.
+
+### Naming
+
+camelCase is used javascript
+
+  ```javascript
+  angular.module('swFrontApp')
+    .directive('cuFocus', function () {
+      return {
+        restrict: 'A',
+        require: 'ngModel',
+        // rest of logic goes here...
+      };
+    });
+  ```
+
+But snake-case is used in html
+
+  ```html
+  <input id="userEmail" type="email" name="email" class="form-control" ng-model="user.email" required cu-focus/>
+  ```
