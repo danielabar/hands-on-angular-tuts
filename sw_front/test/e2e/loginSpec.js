@@ -8,16 +8,11 @@ describe('Login Page', function() {
   });
 
   it('Displays a login form with disabled submit button', function() {
-    var emailInput = element(by.model('user.email'));
-    emailInput.sendKeys('foo');
-    expect(emailInput.getAttribute('value')).toBe('foo');
+    expect(loginPage.isLoginButtonEnabled()).toBe(false);
 
-    var passwordInput = element(by.model('user.password'));
-    passwordInput.sendKeys('bar');
-    expect(passwordInput.getAttribute('value')).toBe('bar');
-
-    var loginButton = element(by.buttonText('Log In'));
-    expect(loginButton.isEnabled()).toBe(false);
+    var formValues = loginPage.fillForm('foo', 'bar');
+    expect(formValues.emailVal).toEqual('foo');
+    expect(formValues.passwordVal).toEqual('bar');
   });
 
 });
