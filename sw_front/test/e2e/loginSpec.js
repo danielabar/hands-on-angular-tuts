@@ -11,6 +11,7 @@ describe('Login Page', function() {
     expect(loginPage.isLoginButtonEnabled()).toBe(false);
 
     var formValues = loginPage.fillForm('foo', 'bar');
+    browser.pause();
     expect(formValues.emailVal).toEqual('foo');
     expect(formValues.passwordVal).toEqual('bar');
   });

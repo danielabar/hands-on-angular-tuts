@@ -259,3 +259,14 @@ But snake-case is used in html
   ```html
   <input id="userEmail" type="email" name="email" class="form-control" ng-model="user.email" required cu-focus/>
   ```
+
+## Token Based Authentication
+
+Steps:
+
+* Client sends credentials (such as email or username and password) to server, for example, via login form.
+* Server checks if credentials are valid, generate unique token, saves it (eg: in a database), and returns token to client
+* Client saves this token somewhere (cookie or local storage)
+* Client includes this token on every subsequent request to server
+* Server checks for token on every resource that requires authentication
+

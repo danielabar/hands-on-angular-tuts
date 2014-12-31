@@ -17,7 +17,8 @@ describe('Controller: LoginController', function () {
     });
   }));
 
-  it('Submits form to server when valid', function () {
+
+  xit('Submits form to server when valid', function () {
     scope.loginForm.$valid = true;
     expect(scope.login()).toBe(true);
   });

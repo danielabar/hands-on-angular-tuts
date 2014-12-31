@@ -1,6 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
+// Define a middleware function to be used for every secured routes
+var auth = function(req, res, next) {
+  if (!req.isAuthenticated())
+    res.send(401);
+  else next();
+};
+
 var hardCodedEdgeData = [
   {
     name: 'Attractive',
@@ -83,8 +90,14 @@ var hardCodedEdgeData = [
 ];
 
 /* GET edges listing. */
-router.get('/', function(req, res) {
-  res.json(hardCodedEdgeData);
-});
+router
+  .route('/')
+    .get(function(req, res) {
+      res.json(hardCodedEdgeData);
+    })
+    .post(auth, function(req, res) {
+      res.json({message: 'woohoo'});
+    });
+
 
 module.exports = router;
