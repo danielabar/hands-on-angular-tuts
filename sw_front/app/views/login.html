@@ -10,7 +10,7 @@
   >
     <label for="userEmail" class="control-label">Email</label>
     <input id="userEmail" type="email" name="email" class="form-control" ng-model="user.email" required/>
-    <p class="help-block" ng-show="loginForm.email.$invalid && loginForm.email.$dirty">
+    <p class="help-block" ng-show="loginForm.email.$invalid && loginForm.email.$dirty && loginForm.submitted">
       Please enter a valid email address in the format of me@example.com
     </p>
   </div>

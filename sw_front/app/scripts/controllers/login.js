@@ -8,6 +8,7 @@ angular.module('swFrontApp')
         console.log('sending request to server');
       } else {
         console.log('form is invalid');
+        $scope.loginForm.submitted = true;
       }
     };
 

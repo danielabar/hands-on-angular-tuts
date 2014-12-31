@@ -217,3 +217,7 @@ To check if form is valid in a controller
     }
   }
   ```
+
+Optionally, can choose to display error messages to user only when form is submitted.
+
+Preferred approach is to display error messages on blur, i.e. when field loses focus. This requires a custom directive.
