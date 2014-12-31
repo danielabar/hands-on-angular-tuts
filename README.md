@@ -222,6 +222,12 @@ To check if form is valid in a controller
 
 Optionally, can choose to display error messages to user only when form is submitted.
 
+To disable submit form button until form is valid
+
+  ```html
+  <button class="btn btn-primary" type="submit" ng-disabled="loginForm.$invalid">Log In</button>
+  ```
+
 ## Angular Directive
 
 Preferred approach is to display error messages on blur, i.e. when field loses focus.
