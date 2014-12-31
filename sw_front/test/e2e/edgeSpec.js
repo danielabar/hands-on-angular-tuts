@@ -6,7 +6,6 @@ describe('Edges Page', function() {
   var EXPECTED_NUM_EDGES = 7;
 
   beforeEach(function () {
-    // browser.get('/#/edges');
     edgePage.navigate();
   });
 
@@ -21,7 +20,7 @@ describe('Edges Page', function() {
     expect(categories.get(5).getText()).toEqual('Leadership');
     expect(categories.get(6).getText()).toEqual('Leadership');
 
-    var names = element.all(by.binding('edge.name'));
+    var names = edgePage.edges();
     expect(names.count()).toEqual(EXPECTED_NUM_EDGES);
     expect(names.get(0).getText()).toEqual('Background Attractive (Novice, Vigor d6)');
     expect(names.get(1).getText()).toEqual('Background Very Attractive (Novice, Attractive)');
@@ -42,18 +41,17 @@ describe('Edges Page', function() {
 
   it('Clicking on an edge toggles its description display', function() {
     var descriptions = element.all(by.binding('edge.description'));
-    var firstEdge = element.all(by.css('li.e2e-edge')).get(0);
-    firstEdge.click();
+    edgePage.clickEdge(0);
 
     expect(descriptions.get(0).isDisplayed()).toBeTruthy();
     expect(descriptions.get(0).getText()).toContain('beautiful people');
 
-    firstEdge.click();
+    edgePage.clickEdge(0);
     expect(descriptions.get(0).isDisplayed()).toBeFalsy();
   });
 
   it('Displays category options', function() {
-    var categoryOptions = element.all(by.options('c.name for c in categories'));
+    var categoryOptions = edgePage.categoryOptions();
     expect(categoryOptions.count()).toEqual(4);
     expect(categoryOptions.get(0).getText()).toBe('All');
     expect(categoryOptions.get(1).getText()).toBe('Background');
@@ -62,7 +60,7 @@ describe('Edges Page', function() {
   });
 
   it('Displays rank options', function() {
-    var rankOptions = element.all(by.options('r.name for r in ranks'));
+    var rankOptions = edgePage.rankOptions();
     expect(rankOptions.count()).toEqual(3);
     expect(rankOptions.get(0).getText()).toBe('All');
     expect(rankOptions.get(1).getText()).toBe('Novice');
@@ -70,14 +68,13 @@ describe('Edges Page', function() {
   });
 
   it('Selecting a category option filters the results by that category', function() {
-    element(by.cssContainingText('option', 'Background')).click();
+    edgePage.selectOption('Background');
 
-    var names = element.all(by.binding('edge.name'));
+    var names = edgePage.edges();
     expect(names.count()).toEqual(3);
     expect(names.get(0).getText()).toEqual('Background Attractive (Novice, Vigor d6)');
     expect(names.get(1).getText()).toEqual('Background Very Attractive (Novice, Attractive)');
     expect(names.get(2).getText()).toEqual('Background Brave (Novice, Spirit d6)');
-
   });
 
 });
