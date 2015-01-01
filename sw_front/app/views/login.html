@@ -1,5 +1,9 @@
 <form class="form" name="loginForm" novalidate ng-submit="login()">
 
+  <div class="alert alert-danger" ng-show="wrongCredentials">
+    You have entered an invalid email address or password, please try again.
+  </div>
+
   <div class="form-group"
     ng-class="
       {

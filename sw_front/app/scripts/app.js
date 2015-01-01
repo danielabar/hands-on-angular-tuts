@@ -50,7 +50,7 @@ angular
         },
         // Error: check the error status to get only the 401
        'responseError': function(rejection) {
-          if (rejection.status === 401) {
+          if (rejection.status === 401 && $location.url() !== '/login') {
             $location.url('/login');
           } else {
             return $q.reject(rejection);
