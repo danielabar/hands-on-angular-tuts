@@ -13,7 +13,7 @@ angular
   // https://raw.githubusercontent.com/Anomen/AuthenticationAngularJS/master/public/javascripts/app.js
   // http://stackoverflow.com/questions/23804981/alternative-of-httpprovider-responseinterceptors
   //================================================
-  .factory('myHttpInterceptor', function($q, $location) {
+  .factory('authInterceptor', function($q, $location) {
     return {
       // Success
       'response': function(response) {
@@ -32,7 +32,7 @@ angular
 
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
 
-    $httpProvider.interceptors.push('myHttpInterceptor');
+    $httpProvider.interceptors.push('authInterceptor');
 
     //================================================
     // Check if the user is logged in

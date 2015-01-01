@@ -270,3 +270,48 @@ Steps:
 * Client includes this token on every subsequent request to server
 * Server checks for token on every resource that requires authentication
 
+### Angular HTTP Interceptor
+
+Can configure an interceptor to intervene in all ajax requests, and modify request or response, success or error cases.
+Interceptor is implemeted as a `factory`. For example, to check all response errors for 401 and redirect user to login page:
+
+  ```javascript
+  .factory('myCustomHttpInterceptor', function($q, $location) {
+    return {
+      'response': function(response) {
+        return response;
+      },
+     'responseError': function(rejection) {
+        if (rejection.status === 401 && $location.url() !== '/login') {
+          $location.url('/login');
+        } else {
+          return $q.reject(rejection);
+        }
+      }
+    };
+    ```
+
+Can also use interceptor to modify every request, for example, suppose an auth_token is persisted in local storage,
+and would like to include it as http header for every ajax request
+
+  ```javascript
+  .factory('myCustomHttpInterceptor', function($q, $location) {
+    return {
+      'request': function(config) {
+        config.headers = config.headers || {};
+        if (localStorage.auth_token) {
+          config.headers.token = localStorage.auth_token;
+        }
+        return config;
+      }
+    };
+  ```
+
+To make your custom http interceptor actually be used by angular, use $httpProvider.
+This would go somewhere in `app.js` where main Angular application (routes etc) is configured.
+
+  ```javascript
+  .config(function($httpProvider) {
+    $httpProvider.interceptors.push('myCustomHttpInterceptor');
+  })
+  ```
