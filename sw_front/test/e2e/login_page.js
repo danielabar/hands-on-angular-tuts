@@ -2,6 +2,10 @@
 
 var LoginPage = function() {
 
+  var loginButton = function() {
+    return element(by.buttonText('Log In'));
+  };
+
   this.navigate = function() {
     browser.get('/#/login');
   };
@@ -20,8 +24,11 @@ var LoginPage = function() {
   };
 
   this.isLoginButtonEnabled = function() {
-    var loginButton = element(by.buttonText('Log In'));
-    return loginButton.isEnabled();
+    return loginButton().isEnabled();
+  };
+
+  this.submitForm = function() {
+    loginButton().click();
   };
 
 };

@@ -80,6 +80,10 @@ angular
           loggedin: checkLoggedin
         }
       })
+      .when('/logout', {
+        templateUrl: 'views/main.html',
+        controller: 'LogoutController'
+      })
       .otherwise({
         redirectTo: '/'
       });
