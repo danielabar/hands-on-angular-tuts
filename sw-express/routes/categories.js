@@ -5,7 +5,10 @@ var hardCodedCategoryData = [
   {name: 'All'},
   {name: 'Background'},
   {name: 'Combat'},
-  {name: 'Leadership'}
+  {name: 'Leadership'},
+  {name: 'one'},
+  {name: 'hello'},
+  {name: 'awesome'}
 ];
 
 /* GET categories listing. */
