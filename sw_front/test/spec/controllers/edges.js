@@ -11,8 +11,8 @@ describe('Controller: EdgesCtrl', function () {
 
   var configureMockHttp = function(http) {
     var edgeResponse = [{key: 'hello'}];
-    var categoryResponse = [{name: 'cat1'}];
-    var rankResponse = [{name: 'rank1'}];
+    var categoryResponse = [{name: 'All'}, {name: 'cat1'}, {name: 'cat2'}];
+    var rankResponse = [{name: 'All'}, {name: 'rank1'}];
     http.whenGET('/api/edges').respond(edgeResponse);
     http.whenGET('/api/categories').respond(categoryResponse);
     http.whenGET('/api/ranks').respond(rankResponse);
@@ -40,11 +40,31 @@ describe('Controller: EdgesCtrl', function () {
     http.flush();
   });
 
-  it('Assigns http response data to edges', function() {
+  it('Assigns http response data to edges, categories, ranks and initializes filters', function() {
     http.flush();
+
+    // Verify edges
     expect(scope.edges[0].key).toEqual('hello');
-    expect(scope.categories[0].name).toEqual('cat1');
-    expect(scope.ranks[0].name).toEqual('rank1');
+
+    // Verify categories
+    expect(scope.categories.length).toEqual(3);
+    expect(scope.categories[0].name).toEqual('All');
+    expect(scope.categories[1].name).toEqual('cat1');
+    expect(scope.categories[2].name).toEqual('cat2');
+
+    // Verify categories for create
+    expect(scope.createCategories.length).toEqual(2);
+    expect(scope.createCategories[0].name).toEqual('cat1');
+    expect(scope.createCategories[1].name).toEqual('cat2');
+
+    // Verify ranks
+    expect(scope.ranks[0].name).toEqual('All');
+    expect(scope.ranks[1].name).toEqual('rank1');
+
+    // Verify filters
+    expect(scope.filterBy.search).toEqual('');
+    expect(scope.filterBy.category.name).toEqual('All');
+    expect(scope.filterBy.rank.name).toEqual('All');
   });
 
   describe('displayRequirements', function() {

@@ -42,7 +42,7 @@ module.exports = function (grunt) {
       },
       jsTest: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js', 'test/spec/{,*/}*.js'],
-        tasks: ['newer:jshint:test', 'karma']
+        tasks: ['newer:jshint:test', 'karma:unit']
       },
       // For now, just run jshint, maybe later auto run protractor/selenium?
       e2eTest: {

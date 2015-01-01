@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('swFrontApp')
-  .controller('EdgesCtrl', function ($scope, $q, EdgeResource, CategoryResource, RankResource) {
+  .controller('EdgesCtrl', function ($scope, $q, EdgeResource, CategoryResource, RankResource, $rootScope) {
 
     var selectedEdge = null;
 
@@ -28,6 +28,7 @@ angular.module('swFrontApp')
      rankPromise()
      ]).then(function(data) {
        $scope.categories = data[0];
+       $scope.createCategories = $scope.categories.slice(1);
        $scope.ranks = data[1];
        $scope.filterBy = {
         search: '',
@@ -67,5 +68,8 @@ angular.module('swFrontApp')
       return result;
     };
 
+    $scope.isUserLoggedIn = function() {
+      return $rootScope.isUserLoggedIn;
+    };
 
   });
