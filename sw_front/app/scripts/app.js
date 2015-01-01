@@ -75,7 +75,7 @@ angular
       })
       .when('/admin', {
         templateUrl: 'views/admin.html',
-        controller: 'AdminCtrl',
+        controller: 'AdminController',
         resolve: {
           loggedin: checkLoggedin
         }
