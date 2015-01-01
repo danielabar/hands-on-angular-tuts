@@ -52,7 +52,7 @@ describe('Edges Page', function() {
 
   it('Displays category options', function() {
     var categoryOptions = edgePage.categoryOptions();
-    expect(categoryOptions.count()).toEqual(4);
+    expect(categoryOptions.count()).toEqual(7);
     expect(categoryOptions.get(0).getText()).toBe('All');
     expect(categoryOptions.get(1).getText()).toBe('Background');
     expect(categoryOptions.get(2).getText()).toBe('Combat');
