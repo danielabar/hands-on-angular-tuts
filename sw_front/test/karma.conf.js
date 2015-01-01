@@ -53,14 +53,25 @@ module.exports = function(config) {
       'karma-chrome-launcher',
       'karma-safari-launcher',
       'karma-jasmine',
-      'karma-html-reporter'
+      'karma-html-reporter',
+      'karma-coverage'
     ],
 
-    reporters: ['progress', 'html'],
+    reporters: ['progress', 'html', 'coverage'],
 
     htmlReporter: {
       outputDir: 'test/karma_html',
       templatePath: __dirname+'/../node_modules/karma-html-reporter/jasmine_template.html'
+    },
+
+    // source files to generate coverage for (do not include tests or libraries)
+    preprocessors: {
+      'app/scripts/**/*.js': ['coverage']
+    },
+
+    coverageReporter: {
+      type : 'html',
+      dir : 'test/karma_coverage/'
     },
 
     // Continuous Integration mode

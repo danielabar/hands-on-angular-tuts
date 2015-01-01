@@ -14,7 +14,6 @@ angular.module('swFrontApp')
       }
     };
 
-    // TODO change location to edges page or some other view that requires a logged in user
     var handleLoginSuccess = function() {
       $scope.wrongCredentials = false;
       $location.path('/edges');
