@@ -22,13 +22,14 @@ describe('Controller: LoginController', function () {
     });
   }));
 
+  afterEach(function() {
+    http.resetExpectations();
+  });
+
   it('Posts to login api when form is valid and clears error flag on successful login', function() {
     // Given
     scope.loginForm.$valid = true;
-    var expectedPostData = {email: user.email, password: user.password};
-    console.log('unit test expectedPostData: ' + JSON.stringify(expectedPostData));
-    // http.expectPOST('/api/login', expectedPostData).respond(200, '');
-    http.whenPOST('/api/login', user).respond(200, '');
+    http.whenPOST('/api/login', {email: user.email, password: user.password}).respond(200, '');
 
     // When
     scope.login();
@@ -38,16 +39,24 @@ describe('Controller: LoginController', function () {
     http.flush();
     http.verifyNoOutstandingExpectation();
     http.verifyNoOutstandingRequest();
+    expect(scope.wrongCredentials).toBe(false);
   });
 
+  it('Posts to login api when form is valid and sets error flag on failure', function() {
+    // Given
+    scope.loginForm.$valid = true;
+    http.whenPOST('/api/login', {email: user.email, password: user.password}).respond(500, '');
 
-  xit('Submits form to server when valid', function () {
-    expect(scope.login()).toBe(true);
-  });
+    // When
+    scope.login();
 
-  xit('Does not submit form to server when invalid', function () {
-    scope.loginForm.$valid = false;
+    // Then
+    http.expectPOST('/api/login', user);
+    http.flush();
+    http.verifyNoOutstandingExpectation();
+    http.verifyNoOutstandingRequest();
     expect(scope.wrongCredentials).toBe(true);
   });
+
 
 });
