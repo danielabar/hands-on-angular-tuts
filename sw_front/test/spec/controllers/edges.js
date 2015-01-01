@@ -53,13 +53,17 @@ describe('Controller: EdgesCtrl', function () {
     expect(scope.categories[2].name).toEqual('cat2');
 
     // Verify categories for create
-    expect(scope.createCategories.length).toEqual(2);
+    expect(scope.createCategories.length).toEqual(scope.categories.length-1);
     expect(scope.createCategories[0].name).toEqual('cat1');
     expect(scope.createCategories[1].name).toEqual('cat2');
 
     // Verify ranks
     expect(scope.ranks[0].name).toEqual('All');
     expect(scope.ranks[1].name).toEqual('rank1');
+
+    // Verify ranks for create
+    expect(scope.createRanks.length).toEqual(scope.ranks.length-1);
+    expect(scope.createRanks[0].name).toEqual('rank1');
 
     // Verify filters
     expect(scope.filterBy.search).toEqual('');

@@ -315,3 +315,30 @@ This would go somewhere in `app.js` where main Angular application (routes etc) 
     $httpProvider.interceptors.push('myCustomHttpInterceptor');
   })
   ```
+
+## ngResource
+
+To create a new resource using ngResource
+
+  ```html
+  <!-- edges.html -->
+  <form name="newEdgeForm" ng-submit="createEdge()">
+    <input type="text" name="name" class="form-control" ng-model="newEdge.name" />
+    <textarea name="description" class="form-control" ng-model="newEdge.description"></textarea>
+    <!-- remainder of newEdge bound input fields... -->
+  </form>
+  ```
+
+  ```javascript
+  // services/edgeresource.js
+  angular.module('swFrontApp')
+    .factory('EdgeResource', function ($resource) {
+      return $resource('/api/edges');
+    });
+
+  // controllers/edge.js
+  angular.module('swFrontApp')
+    .controller('EdgesCtrl', function ($scope, EdgeResource) {
+      $scope.newEdge = new EdgeResource;
+    });
+  ```

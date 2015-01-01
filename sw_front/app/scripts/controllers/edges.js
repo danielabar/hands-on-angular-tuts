@@ -3,9 +3,14 @@
 angular.module('swFrontApp')
   .controller('EdgesCtrl', function ($scope, $q, EdgeResource, CategoryResource, RankResource, $rootScope) {
 
+
     var selectedEdge = null;
 
-    $scope.edges = EdgeResource.query();
+    var refreshEdges = function() {
+      $scope.edges = EdgeResource.query();
+    };
+
+    refreshEdges();
 
     var categoryPromise = function() {
       var deferred = $q.defer();
@@ -30,6 +35,7 @@ angular.module('swFrontApp')
        $scope.categories = data[0];
        $scope.createCategories = $scope.categories.slice(1);
        $scope.ranks = data[1];
+       $scope.createRanks = $scope.ranks.slice(1);
        $scope.filterBy = {
         search: '',
         category: $scope.categories[0],
@@ -71,5 +77,18 @@ angular.module('swFrontApp')
     $scope.isUserLoggedIn = function() {
       return $rootScope.isUserLoggedIn;
     };
+
+    $scope.newEdge = new EdgeResource;
+
+    $scope.createEdge = function() {
+      $scope.newEdge.$save().then(function() {
+        console.log('EDGE SAVE SUCCESS');
+        refreshEdges();
+      },
+      function() {
+        console.log('EDGE SAVE ERROR');
+      });
+    };
+
 
   });

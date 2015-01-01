@@ -89,8 +89,24 @@ router
     .get(function(req, res) {
       res.json(hardCodedEdgeData);
     })
+
+    // A real app would sanitize/validate, then persist in db
+    // This simple implementation just pushes to in-memory list
     .post(auth.isAuthenticated, function(req, res) {
-      res.json({message: 'woohoo'});
+      var edge = req.body;
+
+      // convert rank to a requirement
+      var rankRequirement = {};
+      if (edge.rank && edge.rank.name) {
+        rankRequirement.type = 'rank';
+        rankRequirement.name = '';
+        rankRequirement.value = edge.rank.name;
+      }
+      edge.requirements = [rankRequirement];
+      delete edge.rank;
+
+      hardCodedEdgeData.push(edge);
+      res.status(201).send(edge);
     });
 
 
