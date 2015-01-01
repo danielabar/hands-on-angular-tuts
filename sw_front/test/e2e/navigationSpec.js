@@ -1,5 +1,6 @@
 'use strict';
 
+// TODO Introduce navigation_page, and expose logout link so it can be reused by other tests
 describe('Navigation Menu', function () {
 
   beforeEach(function () {

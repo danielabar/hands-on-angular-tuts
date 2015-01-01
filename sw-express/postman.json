@@ -1,0 +1,91 @@
+{
+  "id": "26275595-cb18-b3f4-1414-59c18ebac380",
+  "name": "Hands on Angular ",
+  "timestamp": 1420068073483,
+  "requests": [
+    {
+      "collectionId": "26275595-cb18-b3f4-1414-59c18ebac380",
+      "id": "5fb44423-a0f2-2cb1-32f1-30c7ba9bbf54",
+      "name": "Edges (auth)",
+      "description": "Create an edge, user must be logged in",
+      "url": "http://localhost:9000/api/edges",
+      "method": "POST",
+      "headers": "Content-Type: application/json\n",
+      "data": "{\n  \"name\" : \"foo\"\n}",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "26275595-cb18-b3f4-1414-59c18ebac380",
+      "id": "acbdec51-31da-9b7e-eaa4-8f7e922a2fec",
+      "name": "Edges (all)",
+      "description": "Get all edges",
+      "url": "http://localhost:9000/api/edges",
+      "method": "GET",
+      "headers": "Content-Type: application/json\n",
+      "data": "",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "26275595-cb18-b3f4-1414-59c18ebac380",
+      "id": "b6fedef7-2f9c-8c47-e52d-7829266f7a90",
+      "name": "Logout",
+      "description": "",
+      "url": "http://localhost:9000/api/logout",
+      "method": "POST",
+      "headers": "Content-Type: application/json\n",
+      "data": "",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "26275595-cb18-b3f4-1414-59c18ebac380",
+      "id": "de60054f-29f0-756b-363c-51797cf838af",
+      "name": "Login",
+      "description": "Login with email and password",
+      "url": "http://localhost:9000/api/login",
+      "method": "POST",
+      "headers": "Content-Type: application/json\n",
+      "data": "{\n  \"email\" : \"admin@test.com\",\n  \"password\" : \"password\"\n}",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "26275595-cb18-b3f4-1414-59c18ebac380",
+      "id": "e565277d-e153-7075-4e28-d483f06d8f8d",
+      "name": "Logged In",
+      "description": "Return user object if user is logged in, or 0 if user is not logged in",
+      "url": "http://localhost:9000/api/loggedin",
+      "method": "GET",
+      "headers": "Content-Type: application/json\n",
+      "data": "{\n  \"email\" : \"admin@test.com\",\n  \"password\" : \"password\"\n}",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "26275595-cb18-b3f4-1414-59c18ebac380",
+      "id": "f504256c-663d-b28c-978d-b9350a56f83a",
+      "name": "Users (all, auth)",
+      "description": "Get all users, requires authorization",
+      "url": "http://localhost:9000/api/users",
+      "method": "GET",
+      "headers": "Content-Type: application/json\n",
+      "data": "{\n  \"email\" : \"admin@test.com\",\n  \"password\" : \"password\"\n}",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    }
+  ]
+}

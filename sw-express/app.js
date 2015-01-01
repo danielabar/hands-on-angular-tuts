@@ -33,7 +33,7 @@ var auth = new Auth(app);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/api/users', users);
 app.use('/api/edges', edges);
 app.use('/api/categories', categories);
 app.use('/api/ranks', ranks);

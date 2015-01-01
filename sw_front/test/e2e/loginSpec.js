@@ -17,7 +17,7 @@ describe('Login Page', function() {
     expect(formValues.passwordVal).toEqual('bar');
   });
 
-  iit('Displays invalid credentials message on failed login attempt', function() {
+  it('Displays invalid credentials message on failed login attempt', function() {
     var loginError = element(by.css('.alert'));
     expect(loginError.isDisplayed()).toBe(false);
 
@@ -26,5 +26,7 @@ describe('Login Page', function() {
 
     expect(loginError.isDisplayed()).toBe(true);
   });
+
+  // TODO successful login redirects to edges page
 
 });
