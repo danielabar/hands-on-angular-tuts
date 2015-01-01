@@ -1,10 +1,6 @@
 'use strict';
 
 angular.module('swFrontApp')
-  .controller('AdminController', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('AdminController', function ($scope, UserResource) {
+    $scope.users = UserResource.query();
   });

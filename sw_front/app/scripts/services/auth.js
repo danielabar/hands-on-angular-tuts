@@ -8,4 +8,7 @@ angular.module('swFrontApp')
     this.logout = function() {
       return $http.post('/api/logout');
     };
+    this.isLoggedIn = function() {
+      return $http.get('/api/loggedin');
+    };
   });

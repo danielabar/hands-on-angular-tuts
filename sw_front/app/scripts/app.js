@@ -87,4 +87,17 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  })
+
+  .run(function($rootScope, $http) {
+    $rootScope.$on('$routeChangeStart', function() {
+      $http.get('/api/loggedin').success(function(user) {
+        if (user !== '0') {
+          $rootScope.isUserLoggedIn = true;
+        }
+        else {
+          $rootScope.isUserLoggedIn = false;
+        }
+      });
+    });
   });
