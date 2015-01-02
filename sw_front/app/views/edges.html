@@ -46,6 +46,7 @@
   <div ng-show="isUserLoggedIn()" class="col-md-4">
     <form name="newEdgeForm" ng-submit="createEdge()">
       <legend>Create new edge</legend>
+      <div class="alert alert-danger" ng-show="edgeCreateErrorMessage"> {{edgeCreateErrorMessage}} </div>
       <div class="form-group">
         <label for="" class="control-label">Name</label>
         <input type="text" name="name" class="form-control" ng-model="newEdge.name" />

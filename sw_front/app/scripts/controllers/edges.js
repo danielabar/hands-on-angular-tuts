@@ -3,14 +3,9 @@
 angular.module('swFrontApp')
   .controller('EdgesCtrl', function ($scope, $q, EdgeResource, CategoryResource, RankResource, $rootScope) {
 
-
     var selectedEdge = null;
 
-    var refreshEdges = function() {
-      $scope.edges = EdgeResource.query();
-    };
-
-    refreshEdges();
+    $scope.edges = EdgeResource.query();
 
     var categoryPromise = function() {
       var deferred = $q.defer();
@@ -81,12 +76,13 @@ angular.module('swFrontApp')
     $scope.newEdge = new EdgeResource;
 
     $scope.createEdge = function() {
-      $scope.newEdge.$save().then(function() {
-        console.log('EDGE SAVE SUCCESS');
-        refreshEdges();
+      $scope.newEdge.$save().then(function(response) {
+        $scope.edges.push(response);        // update edge list
+        $scope.newEdge = new EdgeResource;  // reset to blank form
+        $scope.edgeCreateErrorMessage = false;
       },
-      function() {
-        console.log('EDGE SAVE ERROR');
+      function(response) {
+        $scope.edgeCreateErrorMessage = response.data.message;
       });
     };
 

@@ -94,6 +94,10 @@ router
     // This simple implementation just pushes to in-memory list
     .post(auth.isAuthenticated, function(req, res) {
       var edge = req.body;
+      if (!edge.name) {
+        res.status(400).send({message: 'Edge must have a name'});
+        return;
+      }
 
       // convert rank to a requirement
       var rankRequirement = {};
