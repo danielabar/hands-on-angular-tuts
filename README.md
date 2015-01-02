@@ -342,3 +342,8 @@ To create a new resource using ngResource
       $scope.newEdge = new EdgeResource;
     });
   ```
+
+## Refactoring
+
+Angular controllers tend to get big, means they're doing too much.
+Look at the html view and determine if it can be split up into multiple templates and controllers, each with a single responsibility.

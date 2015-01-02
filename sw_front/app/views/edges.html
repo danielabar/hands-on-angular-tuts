@@ -43,7 +43,7 @@
 
   </div><!--//col-md-8-->
 
-  <div ng-show="isUserLoggedIn()" class="col-md-4">
+  <div ng-show="isUserLoggedIn()" class="col-md-4" ng-controller="NewEdgeController">
     <form name="newEdgeForm" ng-submit="createEdge()">
       <legend>Create new edge</legend>
       <div class="alert alert-danger" ng-show="edgeCreateErrorMessage"> {{edgeCreateErrorMessage}} </div>
