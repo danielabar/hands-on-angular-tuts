@@ -343,6 +343,16 @@ To create a new resource using ngResource
     });
   ```
 
+To delete a resource
+
+  ```javascript
+  var deleteEdge = function(edge) {
+    edge.$delete();
+  }
+  ```
+
+But this doesn't include any body or id parameter in the http request, unless...
+
 ## Refactoring
 
 Angular controllers tend to get big, means they're doing too much.

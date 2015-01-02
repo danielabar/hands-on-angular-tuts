@@ -73,4 +73,8 @@ angular.module('swFrontApp')
       return $rootScope.isUserLoggedIn;
     };
 
+    $scope.deleteEdge = function(edge) {
+      edge.$delete();
+    };
+
   });

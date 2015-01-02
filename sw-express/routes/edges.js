@@ -83,7 +83,6 @@ var hardCodedEdgeData = [
   }
 ];
 
-/* GET edges listing. */
 router
   .route('/')
     .get(function(req, res) {
@@ -111,6 +110,39 @@ router
 
       hardCodedEdgeData.push(edge);
       res.status(201).send(edge);
+    });
+
+// A real app would look this up in db
+router
+  .route('/:id')
+    .get(function(req, res) {
+      var edgeName = req.params.id;
+      var edge = null;
+      for (var i=0; i<hardCodedEdgeData.length; i++) {
+        if (hardCodedEdgeData[i].name === edgeName) {
+          edge = hardCodedEdgeData[i];
+        }
+      }
+      if (edge) {
+        res.json(edge);
+      } else {
+        res.status(404).end();
+      }
+    })
+    .delete(function(req, res) {
+      var edgeName = req.params.id;
+      var foundEdge = false;
+      for (var i=0; i<hardCodedEdgeData.length; i++) {
+        if (hardCodedEdgeData[i].name === edgeName) {
+          hardCodedEdgeData.splice(i, 1);
+          foundEdge = true;
+        }
+      }
+      if (foundEdge) {
+        res.status(204).end();
+      } else {
+        res.status(404).end();
+      }
     });
 
 
