@@ -351,7 +351,14 @@ To delete a resource
   }
   ```
 
-But this doesn't include any body or id parameter in the http request, unless...
+But this only works, given that resource is defined as follows, specifying what object attribute to use for id, for example to use name as id
+
+  ```javascript
+  angular.module('swFrontApp')
+    .factory('EdgeResource', function ($resource) {
+      return $resource('/api/edges/:id', {id: '@name'});
+    });
+  ```
 
 ## Refactoring
 
