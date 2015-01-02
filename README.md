@@ -110,7 +110,7 @@ To have angular populate a select box with options. For example, given that `cat
 ## HTTP
 
 Use Angular's http mock to unit test components that make a ajax requests.
-To use it, inject `$httpBackend` into controller unit tests. [Example](sw_front/test/controllers/edges.js)
+To use it, inject `$httpBackend` into controller unit tests. [Example](sw_front/test/spec/controllers/edges.js)
 
 When working with mock http, its a good idea to make sure there are no leftover pending requests.
 Use `afterEach` to verify `verifyNoOutstandingExpectation` and `verifyNoOutstandingRequest`.
