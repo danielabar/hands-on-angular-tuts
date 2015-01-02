@@ -75,6 +75,11 @@ angular.module('swFrontApp')
 
     $scope.deleteEdge = function(edge) {
       edge.$delete();
+      for (var i=0; i<$scope.edges.length; i++) {
+        if ($scope.edges[i].name === edge.name) {
+          $scope.edges.splice(i, 1);
+        }
+      }
     };
 
   });
